@@ -216,7 +216,7 @@ class SSVAE_Trainer():
         avg_reconstruct_loss = 0.
         avg_kld_loss = 0.
         avg_label_loss = 0.
-        batch_num = len(self.dataloader_dict[phase])
+        sample_num = len(self.dataloader_dict[phase].sampler)
         if phase == 'train':
             self.model.train()
         else:
@@ -232,11 +232,11 @@ class SSVAE_Trainer():
             if phase == 'train':
                 loss.backward()
                 self.optimizer.step()
-            avg_loss += loss.item()
-            avg_reconstruct_loss += reconstruct_loss.item()
-            avg_kld_loss += kld_loss.item()
-            avg_label_loss += label_loss.item()
-        return avg_loss/batch_num, avg_reconstruct_loss/batch_num, avg_kld_loss/batch_num, avg_label_loss/batch_num
+            avg_loss += loss.item() * inputs.size(0)
+            avg_reconstruct_loss += reconstruct_loss.item() * inputs.size(0)
+            avg_kld_loss += kld_loss.item() * inputs.size(0)
+            avg_label_loss += label_loss.item() * inputs.size(0)
+        return avg_loss/sample_num, avg_reconstruct_loss/sample_num, avg_kld_loss/sample_num, avg_label_loss/sample_num
 
     def train(self):
         best_layer_wts = copy.deepcopy(self.model.state_dict())

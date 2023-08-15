@@ -140,7 +140,7 @@ class SSAE_Trainer:
                 loss.backward()
                 optimizer.step()
             sum_loss+= loss.item()
-        return sum_loss/len(self.dataloader_dict[phase])
+        return sum_loss/len(self.dataloader_dict[phase].sampler)
     
     def pretrain(self):
         for layer_idx in range(self.model.num_AE):

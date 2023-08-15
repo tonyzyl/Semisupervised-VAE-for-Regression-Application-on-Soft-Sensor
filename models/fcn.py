@@ -108,7 +108,7 @@ class FCN_Trainer():
                 loss.backward()
                 self.optimizer.step()
             sum_loss+= loss.item()
-        return sum_loss/len(self.dataloader_dict[phase])
+        return sum_loss/len(self.dataloader_dict[phase].sampler)
 
     def train(self):
         best_layer_wts = copy.deepcopy(self.model.state_dict())
