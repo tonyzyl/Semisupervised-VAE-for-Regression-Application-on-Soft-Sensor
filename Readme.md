@@ -56,3 +56,17 @@ Demos:
 demo_debut.ipynb
 
 demo_sru.ipynb
+
+## Citation
+
+If you use our work in your research, please cite us using the following BibTeX:
+```bibtex
+@misc{zhuang2022semisupervised,
+      title={Semi-supervised Variational Autoencoder for Regression: Application on Soft Sensors}, 
+      author={Yilin Zhuang and Zhuobin Zhou and Burak Alakent and Mehmet Mercangöz},
+      year={2022},
+      eprint={2211.05979},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+```
